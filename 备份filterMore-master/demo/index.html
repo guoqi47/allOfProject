@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fiterMore demo演示</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="mumayi_top/css/mumayi_top.css">
+    <link rel="stylesheet" href="../dist/css/filterMore.min.css">
+    <style>
+        body { padding-top: 70px; padding-left: 20px;padding-right: 20px;padding-bottom: 20px; }
+        .t-red{  color: red;  }
+        .w150{  width: 150px;  }
+        .w200{  width: 200px;  }
+        h1{
+            background: #2B6695;
+            border-radius: 6px 6px 6px 6px;
+            box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+            color: #FFFFFF;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 25px;
+            margin: 15px 0 !important;
+            padding: 5px 0 5px 20px;
+            text-shadow: 2px 2px 3px #222222;
+        }
+        .pContent{font-size: 16px;text-indent: 2em;}
+    </style>
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#main">filterMore</a></li>
+                <li><a href="#paramRemark" >参数说明</a></li>
+                <li><a href="#basic" >基本例子</a></li>
+                <li><a href="#customDate">日期自定义</a></li>
+                <li><a href="#expandEvent">展开条件回调事件</a></li>
+                <li><a href="#defaultValue">默认值</a></li>
+                <li><a href="#customData">数据源格式自定义</a></li>
+                <li><a href="#functionCall">方法调用</a></li>
+                <li><a href="#about">关于作者</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1 class="title" id="main">filterMore</h1>
+<h4 style="font-weight: bold;">目地</h4>
+<p class="pContent"> fiterMore是本人开源的第一框前端插件，基于bootstrap部分样式，旨在帮助开发者轻松实现现代化风格的筛选条件。参考某东，某宝的筛选条件。
+</p>
+<img src="images/demo.png" style="max-width: 100%;">
+<h4 style="font-weight: bold;">插件来源</h4>
+<p class="pContent">
+    在开发该插件前，本着拿来主义的精神，寻找了很多前端插件库，没有找到类似插件。只能自己动手，经过差不多一年的项目检验，足步完善，自认为已经比较成熟。
+    她尽可能地在以更少的代码展现更强健的功能，且格外注重性能的提升、易用和实用性。当然，这种“王婆卖瓜”的陈述听起来总是有点难以难受，因此你需要进一步了解她是否真的如你所愿。
+</p>
+
+<h1 class="title" id="paramRemark">参数说明</h1>
+<table class="table table-bordered">
+    <tbody>
+    <tr class="success">
+        <td colspan="5" style="font-weight: bold;">初始化参数大全</td>
+    </tr>
+    <tr class="warning">
+        <th class="w200">参数名</th>
+        <th class="w150">字符类型</th>
+        <th>释义说明</th>
+        <th class="w150">默认值</th>
+        <th class="w150">使用频率</th>
+    </tr>
+    <tr>
+        <td >searchBoxs</td>
+        <td>Array</td>
+        <td>筛选条件项,详情参见<a href="#table_searchBoxsParamList">searchBoxs参数大全</a></td>
+        <td>null</td>
+        <td>必须</td>
+    </tr>
+    <tr>
+        <td >search</td>
+        <td>function</td>
+        <td>查询事件,回调函数参数paramList为筛选条件</td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >expandRow</td>
+        <td>integer</td>
+        <td>展开筛选条件行数</td>
+        <td>2</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >expandEvent</td>
+        <td>function</td>
+        <td>展开更多条件触发事件 参数：state  true表示展开  false 收缩  一般可用来改变表格高度</td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >paramkey</td>
+        <td>string</td>
+        <td>参数收集时返回值的Key</td>
+        <td>ValueList</td>
+        <td>不常用</td>
+    </tr>
+    <tr>
+        <td >paramCustomkey</td>
+        <td>string</td>
+        <td>参数收集时自定义条件返回值的Key</td>
+        <td>CustomList</td>
+        <td>不常用</td>
+    </tr>
+    <tr>
+        <td >searchOnSelect</td>
+        <td>boolean</td>
+        <td>点击选项时是否触发查询事件</td>
+        <td>true</td>
+        <td>不常用</td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-bordered" id="table_searchBoxsParamList">
+    <tbody>
+    <tr class="success">
+        <td colspan="5" style="font-weight: bold;">searchBoxs参数大全</td>
+    </tr>
+    <tr class="warning">
+        <th class="w200">参数名</th>
+        <th class="w150">字符类型</th>
+        <th>释义说明</th>
+        <th class="w150">默认值</th>
+        <th class="w150">使用频率</th>
+    </tr>
+    <tr>
+        <td >id</td>
+        <td>string</td>
+        <td>筛选条件项id，在查询回调事件的参数时会用上</td>
+        <td>没传会使用1,2,3...</td>
+        <td>必须</td>
+    </tr>
+    <tr>
+        <td >title</td>
+        <td>string</td>
+        <td>筛选条件显示标题</td>
+        <td>null</td>
+        <td>必须</td>
+    </tr>
+    <tr>
+        <td >data</td>
+        <td>Array</td>
+        <td>选项数据,数据格式[{value:'1',text:'语文'},{value:'2',text:'数学'}]</td>
+        <td>null</td>
+        <td>必须</td>
+    </tr>
+    <tr>
+        <td >isMultiple</td>
+        <td>boolean</td>
+        <td>是否允许条件多选</td>
+        <td>false</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >type</td>
+        <td>string</td>
+        <td>存在自定义日期区间时需设定  值可为 datetime(年月日时分秒) | date(年月日)</td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >defaults</td>
+        <td>Array</td>
+        <td>默认选中值，为空则选中全部</td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >custom</td>
+        <td>object</td>
+        <td>自定义筛选,详情参见<a href="#table_customParamList">custom参数大全</a></td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    <tr>
+        <td >valueField</td>
+        <td>string</td>
+        <td>选项数据 键字段名称</td>
+        <td>value</td>
+        <td>不常用</td>
+    </tr>
+    <tr>
+        <td >textField</td>
+        <td>string</td>
+        <td>选项数据 值字段名称</td>
+        <td>text</td>
+        <td>不常用</td>
+    </tr>
+    <tr>
+        <td >isShowAll</td>
+        <td>boolean</td>
+        <td>是否显示选项中的全部</td>
+        <td>true</td>
+        <td>不常用</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered" id="table_customParamList">
+    <tbody>
+    <tr class="success">
+        <td colspan="5" style="font-weight: bold;">custom参数大全</td>
+    </tr>
+    <tr class="warning">
+        <th class="w200">参数名</th>
+        <th class="w150">字符类型</th>
+        <th>释义说明</th>
+        <th class="w150">默认值</th>
+        <th class="w150">使用频率</th>
+    </tr>
+    <tr>
+        <td >isRange</td>
+        <td>boolean</td>
+        <td>是否区间,用于控制自定义输入框个数 为false一个输入框 true两个输入框</td>
+        <td>false</td>
+        <td>非必须</td>
+    </tr>
+    <tr>
+        <td >event</td>
+        <td>function</td>
+        <td>点击确定按钮回调事件，函数体申明如下 function(start,end){} isRange为false时 start有值 end:undefined isRange为true时都有值 ,函数返回值为boolean类型 为false时不触发查询事件</td>
+        <td>null</td>
+        <td>常用</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <tbody>
+    <tr class="success">
+        <td colspan="5" style="font-weight: bold;">方法大全</td>
+    </tr>
+    <tr class="warning">
+        <th class="w200">方法名</th>
+        <th class="w150">方法功能</th>
+        <th class="w150">参数</th>
+        <th class="w150">返回值</th>
+        <th>返回值说明</th>
+    </tr>
+    <tr>
+        <td >getParamList</td>
+        <td>获取搜索条件参数</td>
+        <td>无</td>
+        <td>array[]</td>
+        <td>:[
+            {{"CustomList":["2016-09-01 00:00:00","2016-09-15 00:00:00"] //自定义区间值
+             ,"isMultiple":false,"id":"CreatedTimeOne"},
+            {"ValueList":["1"] //选中值,"isMultiple":false,"id":"CreatedTime"},
+            {"ValueList":["0","1"],"isMultiple":true,"id":"Status"},
+            {"ValueList":[],"isMultiple":false,"id":"Createor"}
+            ]</td>
+    </tr>
+    <tr>
+        <td >searchFunctionCall</td>
+        <td>searchBox对外提供的调用函数</td>
+        <td>{"setValue":[]}  key为要调用的函数名称 value:为函数调用参数</td>
+        <td>依据具体函数定</td>
+        <td>
+            setValue函数为赋值函数 调用如下 $(".searchbox").searchFunctionCall({setValue:[{"ValueList":["1"],"id":"CreatedTime"}]})
+
+            getParamList函数为取值函数 调用如下 $(".searchbox").searchFunctionCall({getParamList:null})
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h1 class="col-title" id="basic">基本例子</h1>
+<div class="searchbox" id="basic_searchbox"></div>
+<div id="basic_searchbox_param">查询参数:[]</div>
+
+<h1 class="col-title" id="customDate">日期自定义</h1>
+<div class="searchbox" id="customDate_searchbox"></div>
+<div id="customDate_searchbox_param">查询参数:[]</div>
+
+<h1 class="col-title" id="expandEvent">展开条件回调事件</h1>
+<div class="searchbox" id="expandEvent_searchbox"></div>
+<div id="expandEvent_searchbox_param">是否展开条件:false</div>
+
+<h1 class="col-title" id="defaultValue">默认值</h1>
+<div class="searchbox" id="defaultValue_searchbox"></div>
+<div ><pre class="pre-scrollable">
+    【初始化参数】
+    var options = {
+        //查询条件
+        "searchBoxs": [
+            {
+                "id": "Status_Default",
+                "title": "任务状态",
+                "isMultiple":true,
+                <label class="t-red">"defaults": ['0','1'],</label>
+                "data": [
+                    { "value": "0", "text": "运行" },
+                    { "value": "1", "text": "停止" }
+                ]
+            }
+        ]
+    };
+    </pre></div>
+
+<h1 class="col-title" id="customData">数据源格式自定义</h1>
+<div class="searchbox" id="customData_searchbox"></div>
+<div ><pre  class="pre-scrollable">
+    【初始化参数】
+    var options = {
+        //查询条件
+        "searchBoxs": [
+            {
+                "id": "Task_CustomData",
+                "title": "任务集合",
+                <label class="t-red">"valueField":"taskId",</label>
+                <label class="t-red">"textField":"taskName",</label>
+                "data": [
+                    { "taskId": "1", "taskName": "代理ip爬虫任务" },
+                    { "taskId": "2", "taskName": "日志清理任务" }
+                ]
+            }
+        ]
+    };
+    </pre></div>
+
+<h1 class="col-title" id="functionCall">方法调用</h1>
+<div style="padding-bottom: 10px;">
+    <button type="button" class="btn btn-default btn-sm" id="btn_getParamList">getParamList(获取选中值)</button>
+    <button type="button" class="btn btn-primary btn-sm" id="btn_setValue">setValue(设置控件选中值)</button>
+</div>
+<div class="searchbox" id="functionCall_searchbox"></div>
+<div ><pre  class="pre-scrollable">
+    【调用代码】
+     <label class="t-red">//取值方法</label>
+     $("#btn_getParamList").on("click",function () {
+        console.log($("#functionCall_searchbox").searchFunctionCall({'getParamList':null}));
+        console.log($("#functionCall_searchbox").getParamList();
+     });
+
+     <label class="t-red">//赋值方法</label>
+     $("#btn_setValue").on("click",function () {
+        $("#functionCall_searchbox").searchFunctionCall({'setValue':[
+            {"ValueList":["1","2"],"id":"Task_Function"},
+            {"CustomList":["2016-01-01","2016-02-24"],"id":"CreatedTime_Function"}
+        ]});
+     });
+    </pre></div>
+    <div id="functionCall_searchbox_param">查询参数:[]</div>
+
+
+<h1 class="col-title" id="about">关于作者</h1>
+<p class="pContent">
+    焰尾迭是一个笔名，09年就开始在用了。12年毕业于武汉某高校，在武汉工作至今，转眼已经四年多了。坦诚而言，我的职业生涯谈不上多么靓丽，很大的一个重点可能是在于，我本身的惰性。一段时间不动手写写东西就会
+    偷懒，所以此次耐心写完此篇，只希望能向大牛更进一步。
+</p>
+<p class="pContent">
+    第一次在github上写帮助页面，慢慢摸索了很久，才搞清楚怎么玩。只希望把帮助文档写的详细些，各种参数的使用方式都介绍清楚。不足之处还望见谅！
+</p>
+<p class="pContent">
+    博客园地址:<a href="http://yanweidie.cnblogs.com" target="_blank">http://yanweidie.cnblogs.com</a>
+    插件GitHub地址:<a href="https://github.com/CrazyJson/filterMore" target="_blank">https://github.com/CrazyJson/filterMore</a>
+</p>
+
+
+<div align="center" style="width: 700px;">
+    <a href="javascript:void(0)" style="padding-right: 30px;"><img width="180" height="180" class="alignnone" alt="支付宝捐赠" src="http://images2015.cnblogs.com/blog/336693/201605/336693-20160524174752163-1554089556.png">
+    </a>
+    <a href="javascript:void(0)">
+    <img width="180" height="180" class="alignnoe" alt="微信打赏" src="http://images2015.cnblogs.com/blog/336693/201605/336693-20160524174809834-1334095025.png" ></a>
+</div>
+<p class="pContent" style="color: #FF7200;">    如果你认为该插件帮助到了您，
+    不妨扫描上面二维码，
+    帮助一下我，
+    有了您的资助，
+    将提供更加优质的资源。
+</p>
+
+<div id="footer"></div>
+
+<div style="display: none;" id="rocket-to-top">
+    <div style="opacity:0;display: block;" class="level-2"></div>
+    <div class="level-3"></div>
+</div>
+
+
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="layer/layer.min.js"></script>
+<script src="layer/laydate/laydate.js"></script>
+<script src="mumayi_top/mumayi_top.min.js"></script>
+<script src="../dist/filterMore.min.js"></script>
+
+<script>
+    $(function () {
+        $("#navbar>ul>li").on("click",function () {
+            $(this).addClass("active").siblings().removeClass('active');
+        });
+
+        var tag = window.location.hash;
+        tag=tag || '#main';
+        $(".navbar-nav>li>a[href='"+tag+"']").parent().trigger('click');
+
+        //基本例子
+        initBasic();
+        //日期自定义
+        initCustomDate()
+        //展开条件回调事件
+        initExpandEvent();
+        //默认值
+        initDefault();
+        //数据源格式自定义
+        initCustomData();
+        //方法调用
+        initFunctionCall();
+    });
+
+    //基本例子
+    function  initBasic() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+                $("#basic_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+            },
+            //默认展开条件数
+            "expandRow": 2,
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_Basic",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_Basic",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#basic_searchbox").fiterMore(options);
+    }
+
+    //日期自定义
+    function initCustomDate() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+                $("#customDate_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+            },
+            //默认展开条件数
+            "expandRow": 2,
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "CreatedTimeOne",
+                    "title": "日期定义",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],"isShowAll": false,//是否显示全部
+                    "defaults": ['0'],
+                    "custom": {
+                        "isRange": true,
+                        'event': function (start, end) {
+                            if (!start || !end || start > end) {
+                                var id, tip ;
+                                if (!start) {
+                                    tip = '开始日期必填';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_start";
+                                }
+                                else if (!end) {
+                                    tip = '截止日期必填';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_end";
+                                } else {
+                                    tip = '截止日期必须大于开始日期';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_end";
+                                }
+                                layer.tips(tip, id, {
+                                    tips: 3
+                                });
+                                return false;
+                            }
+                            else {
+                                return true;
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "CreatedTime",
+                    "title": "创建日期",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],
+                    "custom": {
+                        'event': function (start, end) {
+                            console.log(start);
+                            console.log(end);
+                            //返回false不会触发查询事件
+                            return false;
+                        }
+                    }
+                },
+                {
+                    "id": "Status_CustomDate",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_CustomDate",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#customDate_searchbox").fiterMore(options);
+
+        //自定义日期搜索初始化
+        $("#searchitem_CreatedTimeOne_c_custom_start").addClass("form-control layer-date");
+        $("#searchitem_CreatedTimeOne_c_custom_end").addClass("form-control layer-date");
+        //日期范围限制
+        var start = {
+            elem: '#searchitem_CreatedTimeOne_c_custom_start',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            max: laydate.now(),
+            istime: true,
+            istoday: true
+        };
+        var end = {
+            elem: '#searchitem_CreatedTimeOne_c_custom_end',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            max: laydate.now(),
+            istime: true,
+            istoday: true
+        };
+        laydate(start);
+        laydate(end);
+    }
+
+    //展开条件回调事件
+    function  initExpandEvent() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //默认展开条件数
+            "expandRow": 1,
+            //展开更多条件触发事件
+            "expandEvent": function (state) {
+                //展开更多条件触发事件 参数：state  true表示展开  false 收缩
+                $("#expandEvent_searchbox_param").html("是否展开条件:"+state);
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_ExpandEvent",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_ExpandEvent",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#expandEvent_searchbox").fiterMore(options);
+    }
+
+    //默认值
+    function initDefault(){
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_Default",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "defaults": ['0','1'], //默认选中值，没有则选中全部
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                }
+            ]
+        };
+        $("#defaultValue_searchbox").fiterMore(options);
+    }
+
+    //数据源格式自定义
+    function initCustomData(){
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Task_CustomData",
+                    "title": "任务集合",
+                    "valueField":"taskId", //选项json 键字段名称 默认为value
+                    "textField":"taskName",   //选项json 值字段名称 默认为text
+                    "data": [
+                        { "taskId": "1", "taskName": "代理ip爬虫任务" },
+                        { "taskId": "2", "taskName": "日志清理任务" }
+                    ]
+                }
+            ]
+        };
+        $("#customData_searchbox").fiterMore(options);
+    }
+
+    //方法调用
+    function initFunctionCall(){
+        var options = {
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Task_Function",
+                    "title": "任务集合",
+                    "valueField":"taskId", //选项json 键字段名称 默认为value
+                    "textField":"taskName",   //选项json 值字段名称 默认为text
+                    "data": [
+                        { "taskId": "1", "taskName": "代理ip爬虫任务" },
+                        { "taskId": "2", "taskName": "日志清理任务" }
+                    ]
+                },  {
+                    "id": "CreatedTime_Function",
+                    "title": "日期定义",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],"isShowAll": false,//是否显示全部
+                    "defaults": ['0'],
+                    "custom": {
+                        "isRange": true
+                    }
+                }
+            ]
+        };
+        $("#functionCall_searchbox").fiterMore(options);
+
+        $("#btn_getParamList").on("click",function () {
+            $("#functionCall_searchbox_param").html("查询参数:"+ JSON.stringify($("#functionCall_searchbox").getParamList()));
+            console.log($("#functionCall_searchbox").searchFunctionCall({'getParamList':null}));
+        })
+
+        $("#btn_setValue").on("click",function () {
+            $("#functionCall_searchbox").searchFunctionCall({'setValue':[{"ValueList":["1","2"],"id":"Task_Function"},{"CustomList":["2016-01-01","2016-02-24"],"id":"CreatedTime_Function"}]});
+            $("#btn_getParamList").trigger('click')
+        })
+    }
+
+</script>
+</body>
+</html>

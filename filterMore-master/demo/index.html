@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fiterMore demo演示</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="mumayi_top/css/mumayi_top.css">
+    <link rel="stylesheet" href="../dist/css/filterMore.min.css">
+    <style>
+        body { padding-top: 70px; padding-left: 20px;padding-right: 20px;padding-bottom: 20px; }
+        .t-red{  color: red;  }
+        .w150{  width: 150px;  }
+        .w200{  width: 200px;  }
+        h1{
+            background: #2B6695;
+            border-radius: 6px 6px 6px 6px;
+            box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+            color: #FFFFFF;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 25px;
+            margin: 15px 0 !important;
+            padding: 5px 0 5px 20px;
+            text-shadow: 2px 2px 3px #222222;
+        }
+        .pContent{font-size: 16px;text-indent: 2em;}
+    </style>
+</head>
+<body>
+
+
+<h1 class="col-title" id="customDate">筛选列表</h1>
+<div class="searchbox" id="customDate_searchbox"></div>
+<div id="customDate_searchbox_param">查询参数:[]</div>
+
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="layer/layer.min.js"></script>
+<script src="layer/laydate/laydate.js"></script>
+<script src="mumayi_top/mumayi_top.min.js"></script>
+<script src="../dist/filterMore.min.js"></script>
+
+<script>
+    $(function () {
+        $("#navbar>ul>li").on("click",function () {
+            $(this).addClass("active").siblings().removeClass('active');
+        });
+
+        var tag = window.location.hash;
+        tag=tag || '#main';
+        $(".navbar-nav>li>a[href='"+tag+"']").parent().trigger('click');
+
+        //基本例子
+        initBasic();
+        //日期自定义
+        initCustomDate()
+        //展开条件回调事件
+        initExpandEvent();
+        //默认值
+        initDefault();
+        //数据源格式自定义
+        initCustomData();
+        //方法调用
+        initFunctionCall();
+    });
+
+    //基本例子
+    function  initBasic() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+                $("#basic_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+            },
+            //默认展开条件数
+            "expandRow": 2,
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_Basic",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_Basic",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#basic_searchbox").fiterMore(options);
+    }
+
+    //日期自定义
+    function initCustomDate() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+                $("#customDate_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+            },
+            //默认展开条件数
+            "expandRow": 3,
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "CreatedTimeOne",
+                    "title": "导入日期",
+                    "type": "date",
+                    "isShowAll": false,//是否显示全部
+                    // "defaults": ['0'],
+                    "custom": {
+                        "isRange": false
+                    }
+                },{
+                    "id": "CreatedTimeOne",
+                    "title": "身份证号码",
+                    "isShowAll": true,//是否显示全部
+                    
+                    "data": [
+                        { "value": "0", "text": "是" },
+                        { "value": "1", "text": "否" }
+                    ]
+                },{
+                    "id": "CreatedTimeOne",
+                    "title": "日期定义",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],"isShowAll": false,//是否显示全部
+                    "defaults": ['0'],
+                    "custom": {
+                        "isRange": true,
+                        'event': function (start, end) {
+                            if (!start || !end || start > end) {
+                                var id, tip ;
+                                if (!start) {
+                                    tip = '开始日期必填';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_start";
+                                }
+                                else if (!end) {
+                                    tip = '截止日期必填';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_end";
+                                } else {
+                                    tip = '截止日期必须大于开始日期';
+                                    id = "#searchitem_CreatedTimeOne_c_custom_end";
+                                }
+                                layer.tips(tip, id, {
+                                    tips: 3
+                                });
+                                return false;
+                            }
+                            else {
+                                return true;
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "CreatedTime",
+                    "title": "创建日期",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],
+                    "custom": {
+                        'event': function (start, end) {
+                            console.log(start);
+                            console.log(end);
+                            //返回false不会触发查询事件
+                            return false;
+                        }
+                    }
+                },
+                {
+                    "id": "Status_CustomDate",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_CustomDate",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#customDate_searchbox").fiterMore(options);
+
+        //自定义日期搜索初始化
+        $("#searchitem_CreatedTimeOne_c_custom_start").addClass("form-control layer-date");
+        $("#searchitem_CreatedTimeOne_c_custom_end").addClass("form-control layer-date");
+        //日期范围限制
+        var start = {
+            elem: '#searchitem_CreatedTimeOne_c_custom_start',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            max: laydate.now(),
+            istime: true,
+            istoday: true
+        };
+        var end = {
+            elem: '#searchitem_CreatedTimeOne_c_custom_end',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            max: laydate.now(),
+            istime: true,
+            istoday: true
+        };
+        laydate(start);
+        laydate(end);
+    }
+
+    //展开条件回调事件
+    function  initExpandEvent() {
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //默认展开条件数
+            "expandRow": 1,
+            //展开更多条件触发事件
+            "expandEvent": function (state) {
+                //展开更多条件触发事件 参数：state  true表示展开  false 收缩
+                $("#expandEvent_searchbox_param").html("是否展开条件:"+state);
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_ExpandEvent",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                },
+                {
+                    "id": "Createor_ExpandEvent",
+                    "title": "创建人",
+                    "data": [
+                        { "value": "admin", "text": "系统管理员" },
+                        { "value": "zhangsan", "text": "张三" }
+                    ]
+                }
+            ]
+        };
+        $("#expandEvent_searchbox").fiterMore(options);
+    }
+
+    //默认值
+    function initDefault(){
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Status_Default",
+                    "title": "任务状态",
+                    "isMultiple":true,
+                    "defaults": ['0','1'], //默认选中值，没有则选中全部
+                    "data": [
+                        { "value": "0", "text": "运行" },
+                        { "value": "1", "text": "停止" }
+                    ]
+                }
+            ]
+        };
+        $("#defaultValue_searchbox").fiterMore(options);
+    }
+
+    //数据源格式自定义
+    function initCustomData(){
+        var options = {
+            //查询事件
+            "search": function (paramList) {
+            },
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Task_CustomData",
+                    "title": "任务集合",
+                    "valueField":"taskId", //选项json 键字段名称 默认为value
+                    "textField":"taskName",   //选项json 值字段名称 默认为text
+                    "data": [
+                        { "taskId": "1", "taskName": "代理ip爬虫任务" },
+                        { "taskId": "2", "taskName": "日志清理任务" }
+                    ]
+                }
+            ]
+        };
+        $("#customData_searchbox").fiterMore(options);
+    }
+
+    //方法调用
+    function initFunctionCall(){
+        var options = {
+            //查询条件
+            "searchBoxs": [
+                {
+                    "id": "Task_Function",
+                    "title": "任务集合",
+                    "valueField":"taskId", //选项json 键字段名称 默认为value
+                    "textField":"taskName",   //选项json 值字段名称 默认为text
+                    "data": [
+                        { "taskId": "1", "taskName": "代理ip爬虫任务" },
+                        { "taskId": "2", "taskName": "日志清理任务" }
+                    ]
+                },  {
+                    "id": "CreatedTime_Function",
+                    "title": "日期定义",
+                    "type": "datetime",
+                    "data": [
+                        { "value": "0", "text": "最近10分钟" },
+                        { "value": "1", "text": "最近半小时"},
+                        { "value": "2", "text": "最近1小时"},
+                        { "value": "3", "text": "今天"},
+                        { "value": "4", "text": "昨天"},
+                        { "value": "5", "text": "最近3天"},
+                        { "value": "6", "text": "最近7天"},
+                        { "value": "7", "text": "最近15天" },
+                        { "value": "8", "text": "最近30天"}
+                    ],"isShowAll": false,//是否显示全部
+                    "defaults": ['0'],
+                    "custom": {
+                        "isRange": true
+                    }
+                }
+            ]
+        };
+        $("#functionCall_searchbox").fiterMore(options);
+
+        $("#btn_getParamList").on("click",function () {
+            $("#functionCall_searchbox_param").html("查询参数:"+ JSON.stringify($("#functionCall_searchbox").getParamList()));
+            console.log($("#functionCall_searchbox").searchFunctionCall({'getParamList':null}));
+        })
+
+        $("#btn_setValue").on("click",function () {
+            $("#functionCall_searchbox").searchFunctionCall({'setValue':[{"ValueList":["1","2"],"id":"Task_Function"},{"CustomList":["2016-01-01","2016-02-24"],"id":"CreatedTime_Function"}]});
+            $("#btn_getParamList").trigger('click')
+        })
+    }
+
+</script>
+</body>
+</html>
