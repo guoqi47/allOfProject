@@ -100,36 +100,36 @@
 
     //日期自定义
     function initCustomDate() {
-        var options = {
-            //查询事件
-            "search": function (paramList) {
-                $("#customDate_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
-            },
-            //默认展开条件数
-            "expandRow": 2,
-            //查询条件
-            "searchBoxs": [
-                {
-                        "id": "import_date",
+            var options = {
+                //查询事件
+                "search": function (paramList) {
+                    $("#customDate_searchbox_param").html('查询参数:'+JSON.stringify(paramList));
+                },
+                //默认展开条件数
+                "expandRow": 3,
+                //查询条件
+                "searchBoxs": [
+                    {
+                        "id": "CreatedTimeOne",
                         "title": "导入时间",
                         "type": "date",
                         "isShowAll": true,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "id_card_num",
+                        "id": "Createor_Basic",
                         "title": "身份证号码",
                         "data": [
                             { "value": "0", "text": "是" },
                             { "value": "1", "text": "否" }
                         ]
                     },{
-                        "id": "true_name",
+                        "id": "Status_CustomDate1",
                         "title": "实名",
                         "isMultiple":true,
                         "data": [
@@ -138,7 +138,7 @@
                             { "value": "1", "text": "非实名" }
                         ]
                     },{
-                        "id": "package_name",
+                        "id": "Status_CustomDate2",
                         "title": "套餐名称",
                         "isMultiple":true,
                         "data": [
@@ -147,7 +147,7 @@
                             { "value": "1", "text": "其他套餐" }
                         ]
                     },{
-                        "id": "net_age",
+                        "id": "CreatedTimea",
                         "title": "网龄",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":false,
@@ -161,7 +161,7 @@
                             }
                         }
                     },{
-                        "id": "location",
+                        "id": "Status_CustomDates",
                         "title": "县市",
                         "isMultiple":true,
                         "data": [
@@ -173,21 +173,21 @@
                             { "value": "5", "text": "绍兴县" }
                         ]
                     },{
-                        "id": "virtual_net",
+                        "id": "Createor_Basicd",
                         "title": "虚拟网",
                         "data": [
                             { "value": "0", "text": "未开通" },
                             { "value": "1", "text": "已开通" }
                         ]
                     },{
-                        "id": "family_net",
+                        "id": "Createor_Basicf",
                         "title": "亲情网",
                         "data": [
                             { "value": "0", "text": "未开通" },
                             { "value": "1", "text": "已开通" }
                         ]
                     },{
-                        "id": "estimate_guarantee",
+                        "id": "CreatedTimeq",
                         "title": "保底预估费",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":false,
@@ -198,40 +198,54 @@
                             }
                         }
                     },{
-                        "id": "domestic_flow",
+                        "id": "CreatedTimew",
                         "title": "国内数据流量",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":false,
                         "type": "",
-                        
+                        "data": [
+                            { "value": "0", "text": "大于" },
+                            { "value": "0", "text": "大于等于" },
+                            { "value": "0", "text": "等于" },
+                            { "value": "0", "text": "小于" },
+                            { "value": "1", "text": "小于等于"}
+                            
+                        ],
                         "custom": {
                             'event': function (start, end) {
                                 //返回false不会触发查询事件
-                                return true;
+                                return false;
                             }
                         }
                     },{
-                        "id": "fly_domestic_voice",
+                        "id": "CreatedTimee",
                         "title": "飞享套餐国内语音",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":false,
                         "type": "",
-                        
+                        "data": [
+                            { "value": "0", "text": "大于" },
+                            { "value": "0", "text": "大于等于" },
+                            { "value": "0", "text": "等于" },
+                            { "value": "0", "text": "小于" },
+                            { "value": "1", "text": "小于等于"}
+                            
+                        ],
                         "custom": {
                             'event': function (start, end) {
                                 //返回false不会触发查询事件
-                                return true;
+                                return false;
                             }
                         }
                     },{
-                        "id": "personal_recommend",
+                        "id": "Createor_Basicr",
                         "title": "是否是明星机",
                         "data": [
                             { "value": "0", "text": "是" },
                             { "value": "1", "text": "否" }
                         ]
                     },{
-                        "id": "business_recommend",
+                        "id": "Status_CustomDatez",
                         "title": "业务推荐",
                         "isMultiple":true,
                         "data": [
@@ -240,19 +254,23 @@
                             { "value": "1", "text": "飞悦提档" }
                         ]
                     },{
-                        "id": "fourG_star_down_target",
+                        "id": "Createor_Basicx",
                         "title": "4G明星机直降目标",
                         "data": [
                             { "value": "0", "text": "是" },
                             { "value": "1", "text": "否" }
                         ]
                     },{
-                        "id": "three_months_avg_flow",
+                        "id": "CreatedTimec",
                         "title": "近三个月平均移动数据上网流量",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":true,
                         "type": "",
-                        
+                        "data": [
+                            { "value": "0", "text": "大于等于" },
+                            { "value": "1", "text": "小于等于"}
+                            
+                        ],
                         "custom": {
                             'event': function (start, end) {
                                 //返回false不会触发查询事件
@@ -260,285 +278,210 @@
                             }
                         }
                     },{
-                        "id": "three_months_avg_income",
+                        "id": "CreatedTimev",
                         "title": "出账-近三个月平均收入",
                         "isShowAll": false,//是否显示全部
                         "isMultiple":true,
                         "type": "",
-                        
+                        "data": [
+                            { "value": "0", "text": "大于等于" },
+                            { "value": "1", "text": "小于等于"}
+                            
+                        ],
                         "custom": {
                             'event': function (start, end) {
                                 //返回false不会触发查询事件
-                                return true;
+                                return false;
                             }
                         }
                     },{
-                        "id": "fourG_feiyue_time",
+                        "id": "Createor_Basicb",
                         "title": "4G飞悦套餐时间",
                         "data": [
                             { "value": "0", "text": "有时间" },
                             { "value": "1", "text": "无时间" }
                         ]
                     },{
-                        "id": "fourG_feixiang_time",
+                        "id": "Createor_Basicn",
                         "title": "4G飞享套餐时间",
                         "data": [
                             { "value": "0", "text": "有时间" },
                             { "value": "1", "text": "无时间" }
                         ]
                     },{
-                        "id": "upto_feiyue_time",
+                        "id": "CreatedTimeOne2",
+                        "title": "日期定",
+                        "type": "date",
+                        "data": [
+                            { "value": "0", "text": "最近10分钟" },
+                            { "value": "1", "text": "最近半小时"},
+                            { "value": "2", "text": "最近1小时"},
+                            { "value": "3", "text": "今天"},
+                            { "value": "4", "text": "昨天"},
+                            { "value": "5", "text": "最近3天"},
+                            { "value": "6", "text": "最近7天"},
+                            { "value": "7", "text": "最近15天" },
+                            { "value": "8", "text": "最近30天"}
+                        ],"isShowAll": false,//是否显示全部
+                        "defaults": ['0'],
+                        "custom": {
+                            "isRange": true,
+                            'event': function (start, end) {
+                                return true;
+                                
+                            }
+                        }
+                    },{
+                        "id": "CreatedTimeOne",
+                        "title": "导入时间",
+                        "type": "date",
+                        "isShowAll": true,//是否显示全部
+                        "custom": {
+                            "isRange": false,
+                            'event': function (start, end) {
+                                console.log(start);
+                                return true;
+                            }
+                        }
+                    },{
+                        "id": "CreatedTimeOne",
                         "title": "升飞悦时间",
                         "type": "date",
                         "data": [],
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
-                            'event': function (start,end) {
+                            "isRange": false,
+                            'event': function (start) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "upto_feixiang_time",
+                        "id": "CreatedTimeOne",
                         "title": "升飞享时间",
                         "type": "date",
-                        "data": [],
+
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "straight_down_time",
+                        "id": "CreatedTimeOne",
                         "title": "（直降）时间",
-                        "type": "date",
+                        "type": "datetime",
 
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "CreatedTimeOne4",
+                        "id": "CreatedTimeOne",
                         "title": "合约计划-保底时间",
-                        "type": "date",
+                        "type": "datetime",
 
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "CreatedTimeOne5",
+                        "id": "CreatedTimeOne",
                         "title": "政企时间",
-                        "type": "date",
+                        "type": "datetime",
 
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "CreatedTimeOne6",
+                        "id": "CreatedTimeOne",
                         "title": "【新】政企合约时间",
                         "type": "date",
 
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     },{
-                        "id": "CreatedTimeOne7",
+                        "id": "CreatedTimeOne",
                         "title": "2017话务营销活动时间",
-                        "type": "date",
+                        "type": "datetime",
                         "data": [],
                         "isShowAll": false,//是否显示全部
                         "custom": {
-                            "isRange": true,
+                            "isRange": false,
                             'event': function (start, end) {
                                 console.log(start);
                                 return true;
                             }
                         }
                     }
-            ]
-        };
-        $("#customDate_searchbox").fiterMore(options);
+                ]
+            };
+            $("#customDate_searchbox").fiterMore(options);
 
-        //自定义日期搜索初始化
-        $("#searchitem_import_date_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_import_date_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start = {
-            elem: '#searchitem_import_date_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end = {
-            elem: '#searchitem_import_date_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start);
-        laydate(end);
+            //自定义日期搜索初始化
+            $("#searchitem_CreatedTimeOne_c_custom_start").addClass("form-control layer-date");
+            $("#searchitem_CreatedTimeOne_c_custom_end").addClass("form-control layer-date");
+            //日期范围限制
+            var start = {
+                elem: '#searchitem_CreatedTimeOne_c_custom_start',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                max: laydate.now(),
+                istime: true,
+                istoday: true
+            };
+            var end = {
+                elem: '#searchitem_CreatedTimeOne_c_custom_end',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                max: laydate.now(),
+                istime: true,
+                istoday: true
+            };
+            laydate(start);
+            laydate(end);
 
-        $("#searchitem_upto_feiyue_time_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_upto_feiyue_time_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start1 = {
-            elem: '#searchitem_upto_feiyue_time_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end1 = {
-            elem: '#searchitem_upto_feiyue_time_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start1);
-        laydate(end1);
+            $("#searchitem_CreatedTimeOne2_c_custom_start").addClass("form-control layer-date");
+            $("#searchitem_CreatedTimeOne2_c_custom_end").addClass("form-control layer-date");
+            //日期范围限制
+            var start2 = {
+                elem: '#searchitem_CreatedTimeOne2_c_custom_start',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                max: laydate.now(),
+                istime: true,
+                istoday: true
+            };
+            var end2 = {
+                elem: '#searchitem_CreatedTimeOne2_c_custom_end',
+                format: 'YYYY-MM-DD hh:mm:ss',
+                max: laydate.now(),
+                istime: true,
+                istoday: true
+            };
+            laydate(start2);
+            laydate(end2);
+            
 
-        $("#searchitem_upto_feixiang_time_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_upto_feixiang_time_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start2 = {
-            elem: '#searchitem_upto_feixiang_time_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end2 = {
-            elem: '#searchitem_upto_feixiang_time_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start2);
-        laydate(end2);
-
-        $("#searchitem_straight_down_time_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_straight_down_time_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start3 = {
-            elem: '#searchitem_straight_down_time_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end3 = {
-            elem: '#searchitem_straight_down_time_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start3);
-        laydate(end3);
-        $("#searchitem_CreatedTimeOne4_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_CreatedTimeOne4_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start4 = {
-            elem: '#searchitem_CreatedTimeOne4_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end4 = {
-            elem: '#searchitem_CreatedTimeOne4_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start4);
-        laydate(end4);
-        $("#searchitem_CreatedTimeOne5_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_CreatedTimeOne5_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start5 = {
-            elem: '#searchitem_CreatedTimeOne5_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end5 = {
-            elem: '#searchitem_CreatedTimeOne5_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start5);
-        laydate(end5);
-        $("#searchitem_CreatedTimeOne6_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_CreatedTimeOne6_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start6 = {
-            elem: '#searchitem_CreatedTimeOne6_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end6 = {
-            elem: '#searchitem_CreatedTimeOne6_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start6);
-        laydate(end6);
-        $("#searchitem_CreatedTimeOne7_c_custom_start").addClass("form-control layer-date");
-        $("#searchitem_CreatedTimeOne7_c_custom_end").addClass("form-control layer-date");
-        //日期范围限制
-        var start7 = {
-            elem: '#searchitem_CreatedTimeOne7_c_custom_start',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        var end7 = {
-            elem: '#searchitem_CreatedTimeOne7_c_custom_end',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            max: laydate.now(),
-            istime: true,
-            istoday: true
-        };
-        laydate(start7);
-        laydate(end7);
-    }
+        }
 
     //展开条件回调事件
     function  initExpandEvent() {

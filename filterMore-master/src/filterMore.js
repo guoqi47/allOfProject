@@ -302,7 +302,7 @@ $.extend(String.prototype, {
                     strHTML += ('<div class="searchbox-item" {0} data-id="{1}" id="{2}">'.format((i + 1) == settings.searchBoxs.length ? 'style="border: 0"' : "", i, item.id) +
                     '<div class="l" id="{1}_l">{0}<i></i></div>'.format(item.title, item.id) +
                     '<div class="c" id="{0}_c">'.format(item.id) +
-                    '<div class="control-type"></div><div class="filter_option" style="padding-right:{1}px;">'.format(item.isMultiple ? "" : "", _getCustomDivWidth(item) + 20) + _createOptions(item) +
+                    '<div class="control-type">({0})</div><div class="filter_option" style="padding-right:{1}px;">'.format(item.isMultiple ? "多选" : "单选", _getCustomDivWidth(item) + 20) + _createOptions(item) +
                     '</div>' + _createCustomFilter(i, item) +
                     '</div>' +
                     '<a href="javascript:;" class="r" id="{0}_r"><span class="text">展开</span></a>'.format(item.id) +
