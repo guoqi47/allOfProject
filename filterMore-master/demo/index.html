@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>fiterMore demo演示</title>
+    <title>数据筛选</title>
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="mumayi_top/css/mumayi_top.css">
     <link rel="stylesheet" href="../dist/css/filterMore.min.css">
@@ -113,7 +113,7 @@
                         "id": "import_date",
                         "title": "导入时间",
                         "type": "date",
-                        "isShowAll": true,//是否显示全部
+                        "isShowAll": false,//是否显示全部
                         "custom": {
                             "isRange": true,
                             'event': function (start, end) {
@@ -248,9 +248,9 @@
                         ]
                     },{
                         "id": "three_months_avg_flow",
-                        "title": "近三个月平均移动数据上网流量",
+                        "title": "近三个月平均数据上网流量",
                         "isShowAll": false,//是否显示全部
-                        "isMultiple":true,
+                        "isMultiple":false,
                         "type": "",
                         
                         "custom": {
@@ -263,7 +263,7 @@
                         "id": "three_months_avg_income",
                         "title": "出账-近三个月平均收入",
                         "isShowAll": false,//是否显示全部
-                        "isMultiple":true,
+                        "isMultiple":false,
                         "type": "",
                         
                         "custom": {
