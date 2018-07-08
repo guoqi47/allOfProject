@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户管理</title>
+	<!-- Bootstrap Styles-->
+    <link href="/static/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/static/assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="/static/assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">Dream</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="query"><i class="fa fa-table"></i>  数据查询</a>
+                    </li>
+                    <li>
+                        <a href="dataImport"><i class="fa fa-edit"></i>  数据导入 </a>
+                    </li>
+                    <li>
+                        <a href="management"><i class="fa fa-edit"></i>  用户管理 </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            用户管理 <!-- <small>Best form elements.</small> -->
+                        </h1>
+                    </div>
+             </div>
+                 <!-- /. ROW  -->
+            <div class="row">
+        <div class="panel panel-default">
+        <div id="myapp1" class="container">
+            <h2 class="text-center">添加用户</h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2 col-sm-offset-2">用户名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name"  placeholder="请输入用户名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="control-label col-sm-2 col-sm-offset-2">手机号：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="phone"  placeholder="请输入手机号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pass_word" class="control-label col-sm-2 col-sm-offset-2">密 码：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="pass_word"  placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="button" value="添  加" id="addUserButton" class="btn btn-primary"  >
+                    <input type="reset" value="重  置" class="btn btn-primary">
+                </div>
+            </form>
+            <br/>
+            <table class="table table-bordered table-hover">
+                <caption class="h3 text-center text-info">用户列表</caption>
+                <thead>
+                <tr>
+                    <th class="text-center">序号</th>
+                    <th class="text-center">姓名</th>
+                    <th class="text-center">年龄</th>
+                    <th class="text-center">邮箱</th>
+                    <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+
+                </tbody>
+            </table>
+
+            <!-- 弹出框 -->
+
+        </div>
+        </div>
+                <!-- /. ROW  -->
+    </div>
+
+			</div>
+             <!-- /. PAGE INNER  -->
+        </div>
+
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/static/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/static/assets/js/jquery.metisMenu.js"></script>
+     <!-- DATA TABLE SCRIPTS -->
+
+
+         <!-- Custom Js -->
+    <script src="/static/assets/js/custom-scripts.js"></script>
+    <script src="/static/js/md5.js"></script>
+    <script>
+        ;(function () {
+        'use strict';
+        let salt = "oknopk(8*lfdigjhDJGBEO%#&BGV";
+        let pwd = document.getElementById('pass_word');
+        let name = document.getElementById('name');
+        let phone = document.getElementById('phone');
+
+        document.getElementById('addUserButton').addEventListener(
+            'click',
+            function (event) {
+                event.preventDefault();
+                alert(md5(pwd.value+salt))
+                $.ajax({
+                  url:'http://47.100.239.246:8081/add_user',
+                  type: 'POST',
+                  data:{
+                      'phone':phone.value,
+                      'name':name.value,
+                      'password':md5(pwd.value+salt)
+                   },
+                   contentType:"application/x-www-form-urlencoded",
+                   success:function(res){
+                         console.log(res);//输出后端
+                         alert(res.msg)
+                   },
+                   error:function(err){
+                        alert(err.msg);
+                   }
+              });
+            }
+      )
+    }())
+    </script>
+
+    
+   
+</body>
+</html>
