@@ -453,11 +453,12 @@ def add_user():
 
 
 @app.route('/del_user', methods=['POST'])
-@check_session
+# @check_session
 def del_user():
     # if sess['rank'] != 'admin':
     #     return "没有权限"
     user_id = request.form['user_id']
+    print(user_id)
     try:
         user_id = int(user_id)
     except ValueError:

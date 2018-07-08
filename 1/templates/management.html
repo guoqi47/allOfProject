@@ -12,11 +12,20 @@
     <link href="/static/assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
+    <style>
+        .glyphicon{color:#3276b1;padding:0 5px;cursor: pointer;}
+        .glyphicon-plus{color:#888;}
+        table tr .form-control{border:0;background:#fff;}
+    </style>
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/bootstrap.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/static/assets/js/jquery.metisMenu.js"></script>
+     <!-- DATA TABLE SCRIPTS -->
 
 
+         <!-- Custom Js -->
+    <script src="/static/assets/js/custom-scripts.js"></script>
 
 </head>
 <body>
@@ -111,28 +120,36 @@
                 </div>
             </form>
             <br/>
-            <table class="table table-bordered table-hover">
-                <caption class="h3 text-center text-info">用户列表</caption>
+            <table class="table">
+                <caption>用户列表</caption>
                 <thead>
                 <tr>
-                    <th class="text-center">序号</th>
-                    <th class="text-center">姓名</th>
-                    <th class="text-center">年龄</th>
-                    <th class="text-center">邮箱</th>
-                    <th class="text-center">操作</th>
+                    <th>用户名</th>
+                    <th>手机号</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                
-
+                <tr>
+                    <td>a</td>
+                    <td>aa</td>
+                    <td><i class="glyphicon glyphicon-remove"></i></td>
+                </tr>
+                <tr>
+                    <td>q</td>
+                    <td>qq</td>
+                    <td><i class="glyphicon glyphicon-remove"></i></td>
+                </tr>
                 </tbody>
             </table>
 
             <!-- 弹出框 -->
 
         </div>
+
         </div>
                 <!-- /. ROW  -->
+
     </div>
 
 			</div>
@@ -144,16 +161,7 @@
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
-    <script src="/static/assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
-    <script src="/static/assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="/static/assets/js/jquery.metisMenu.js"></script>
-     <!-- DATA TABLE SCRIPTS -->
 
-
-         <!-- Custom Js -->
-    <script src="/static/assets/js/custom-scripts.js"></script>
     <script src="/static/js/md5.js"></script>
     <script>
         ;(function () {
@@ -190,6 +198,30 @@
     }())
     </script>
 
+    <script type="text/javascript">
+        $(function(){
+            $("table").on("click",".glyphicon-remove",function(){//点击删除图标 删除一整行
+                var userPhone = $(this).closest('tr').children().eq(1).text();
+                // alert (a);
+                $.ajax({
+                  url:'http://47.100.239.246:8081/del_user',
+                  type: 'POST',
+                  data:{
+                      'user_id':userPhone
+                   },
+                   contentType:"application/x-www-form-urlencoded",
+                   success:function(res){
+                         console.log(res);//输出后端
+                         alert(res.msg)
+                   },
+                   error:function(err){
+                        alert(err.msg);
+                   }
+              });
+        });
+
+    });
+    </script>
     
    
 </body>
