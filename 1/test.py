@@ -332,6 +332,10 @@ def search():
         result_list.append(i)
     return jsonify({'success': True, 'msg': 'OK', 'data': {'result': result_list, 'total': total, 'page': page}})
 
+@app.route('/filter', methods=['POST', 'GET'])
+def filter():
+    if request.method == 'GET':
+        return render_template('filter.html')
 
 @app.route('/query', methods=['GET'])
 # @check_session
@@ -410,6 +414,7 @@ def change_columns(cn_name):
 @app.route('/logout', methods=['GET'])
 @check_session
 def logout():
+    print("logout")
     sess.pop('phone')
     sess.pop('rank')
     redirect('/login')
