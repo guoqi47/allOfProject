@@ -10,17 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="filter.html" pinned="true" current-in-tab="true">
-        <entry file="remoteDeploymentFS://&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/templates/filter.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="86" column="18" lean-forward="true" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -33,6 +23,17 @@
       <find>logout</find>
       <find>dataTables-example</find>
       <find>myapp1</find>
+      <find>t-red</find>
+      <find>filterMore.min.css</find>
+      <find>.searchbox-item .filter_custom&gt;span</find>
+      <find>filterMor</find>
+      <find>lay</find>
+      <find>.filter_custom span</find>
+      <find>form-group</find>
+      <find>重</find>
+      <find>customDate_searchbox_param</find>
+      <find>redirect</find>
+      <find>click</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -41,9 +42,10 @@
         <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/static/js/addUser.js" />
         <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/templates/dataImport.html" />
         <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/templates/query.html" />
+        <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/static/css/filterMore.min.css" />
+        <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/test.py" />
         <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/templates/management.html" />
         <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/templates/filter.html" />
-        <option value="&lt;c3dafc35-15f1-4b36-bbb6-6a36fdbebab7&gt;/root/1/test.py" />
       </list>
     </option>
   </component>
@@ -57,10 +59,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="121" />
-    <option name="y" value="88" />
-    <option name="width" value="1745" />
-    <option name="height" value="895" />
+    <option name="x" value="526" />
+    <option name="y" value="44" />
+    <option name="width" value="1696" />
+    <option name="height" value="901" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -78,20 +80,7 @@
             <path>
               <item name="1" type="b2602c69:ProjectViewProjectNode" />
               <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="root" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="root" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="root" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -109,6 +98,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python程序\1\static\css" />
+      <recent name="D:\Python程序\1\static\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python程序\1\static\css" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -136,19 +134,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="121" y="88" width="1745" height="895" extended-state="0" />
-    <editor active="true" />
+    <frame x="72" y="45" width="1696" height="901" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="0" visible="true" weight="0.329235" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.329235" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.3282967" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3387978" />
-      <window_info active="true" anchor="right" id="Remote Host" order="3" visible="true" weight="0.24447101" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16019127" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.27506775" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1317734" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -157,10 +152,12 @@
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.24261084" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="0" visible="true" weight="0.3306233" />
       <window_info anchor="bottom" id="Find" order="2" />
     </layout>
   </component>
@@ -177,6 +174,14 @@
           <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/1/templates/filter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/filterMore.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

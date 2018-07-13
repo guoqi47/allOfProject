@@ -412,12 +412,12 @@ def change_columns(cn_name):
 
 
 @app.route('/logout', methods=['GET'])
-@check_session
+# @check_session
 def logout():
-    print("logout")
-    sess.pop('phone')
-    sess.pop('rank')
-    redirect('/login')
+    print("logogffggut")
+    # sess.pop('phone')
+    # sess.pop('rank')
+    return redirect('/login')
 
 
 @app.route('/user_manage', methods=['GET'])

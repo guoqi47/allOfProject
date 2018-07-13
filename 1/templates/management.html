@@ -92,7 +92,8 @@
             <div class="row">
         <div class="panel panel-default">
         <div class="container">
-            <h2 class="text-center">添加用户</h2>
+            <h3 class="text-center">添加用户</h3>
+            <br/>
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="name" class="control-label col-sm-2 col-sm-offset-2">用户名：</label>
@@ -117,9 +118,9 @@
                     <input type="reset" value="重  置" class="btn btn-primary">
                 </div>
             </form>
-            <br/>
+            <br/><br/>
             <table class="table" id="addrows">
-                <caption>用户列表</caption>
+                <h3 class="text-center">用户列表</h3>
                 <thead>
                 <tr>
                     <th>用户名</th>
@@ -224,7 +225,6 @@
     <script type="text/javascript">
         $(function(){
             $("#logout").click(function(){
-                alert (1);
                 $.ajax({
                   url:'http://47.100.239.246:8081/logout',
                   type: 'GET',
